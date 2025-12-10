@@ -26,6 +26,9 @@ from sklearn.ensemble import (
 
 import mlflow
 
+import dagshub
+dagshub.init(repo_owner='Sirivella-Rajasekhar-Reddy', repo_name='NetworkSecurity', mlflow=True)
+
 
 class ModelTrainer:
     def __init__(self,model_trainer_config:ModelTrainerConfig,data_transformation_artifact:DataTransformationArtifact):
@@ -37,6 +40,7 @@ class ModelTrainer:
         
     def track_mlflow(self,best_model,classificationmetric):
         with mlflow.start_run():
+            
             f1_score=classificationmetric.f1_score
             precision_score=classificationmetric.precision_score
             recall_score=classificationmetric.recall_score
